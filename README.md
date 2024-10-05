@@ -28,8 +28,6 @@ gantt
     Testing             :          testing, 10/16, 7d
     Rehearsal           :          rehearsal, 10/21, 2d
 
-# Software flow chart
-
 flowchart TD
     A[Start: Chasing Car Activated] --> B[Depth Camera Input]
     B --> C[Person Detection]
