@@ -63,4 +63,9 @@ flowchart TD
     W -- No --> X[Stop and End Process]
     X --> End
     Q -- No --> J
+    
+    N --> Y[Rotate Right for 5 Seconds] --> Z[Return to Center]
+    O --> AA[Rotate Left for 5 Seconds] --> Z[Return to Center]
+    Z --> AB[Search for Specific Person]
+    AB --> V
 ```
