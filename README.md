@@ -30,7 +30,6 @@ gantt
 
 # Software flow chart
 
-```mermaid
 flowchart TD
     A[Start: Chasing Car Activated] --> B[Depth Camera Input]
     B --> C[Person Detection]
