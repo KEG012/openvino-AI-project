@@ -27,7 +27,11 @@ gantt
     Debugging           :          debugging, 10/16, 6d
     Testing             :          testing, 10/16, 7d
     Rehearsal           :          rehearsal, 10/21, 2d
+```
 
+# Software Flow Chart
+
+```mermaid
 flowchart TD
     A[Start: Chasing Car Activated] --> B[Depth Camera Input]
     B --> C[Person Detection]
@@ -59,3 +63,4 @@ flowchart TD
     W -- No --> X[Stop and End Process]
     X --> End
     Q -- No --> J
+```
