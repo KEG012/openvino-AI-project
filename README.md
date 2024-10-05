@@ -53,8 +53,8 @@ flowchart TD
     I --> Q[Has Person Disappeared from View?]
     Q -- Yes --> R[Move Forward 1 Meter]
     R --> S{Was Person on Left or Right of Screen?}
-    S -- Left --> T[Turn Left 90 degree]
-    S -- Right --> U[Turn Right 90 degree]
+    S -- Left --> T[Turn Left]
+    S -- Right --> U[Turn Right]
     T --> V[Search for Person for 10 Seconds]
     U --> V[Search for Person for 10 Seconds]
     V --> W{Is Person Found?}
