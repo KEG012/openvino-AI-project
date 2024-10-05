@@ -27,3 +27,38 @@ gantt
     Debugging           :          debugging, 10/16, 6d
     Testing             :          testing, 10/16, 7d
     Rehearsal           :          rehearsal, 10/21, 2d
+
+# Software flow chart
+
+```mermaid
+flowchart TD
+    A[Start: Chasing Car Activated] --> B[Depth Camera Input]
+    B --> C[Person Detection]
+    C --> D[Pose Estimation: Shoulders, Hips, Elbows, Head]
+    D --> E[Create Landmark Based on Body Features]
+    E --> F[Identify Person]
+    F --> G[Is Person Showing Palm Hand Gesture?]
+    G -- Yes --> H[Detect Specific Person Only]
+    H --> I[Follow Detected Person]
+    G -- No --> B
+    I --> J[Hand Gesture Recognition]
+    J --> K{Gesture Command}
+    K -- One Finger --> L[Move Closer]
+    K -- Two Fingers --> M[Move Backward]
+    K -- Three Fingers --> N[Rotate Right]
+    K -- Four Fingers --> O[Rotate Left]
+    K -- Fist --> P[Stop Following]
+    P --> End[End Process]
+    
+    I --> Q[Has Person Disappeared from View?]
+    Q -- Yes --> R[Move Forward 1 Meter]
+    R --> S{Was Person on Left or Right of Screen?}
+    S -- Left --> T[Turn Left 90 degree]
+    S -- Right --> U[Turn Right 90 degree]
+    T --> V[Search for Person for 10 Seconds]
+    U --> V[Search for Person for 10 Seconds]
+    V --> W{Is Person Found?}
+    W -- Yes --> I
+    W -- No --> X[Stop and End Process]
+    X --> End
+    Q -- No --> J
