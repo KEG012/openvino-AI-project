@@ -87,6 +87,7 @@ flowchart TD
 3. 라즈베리에서 intel realsense 사용 불가 Check
 4. mediapipe 를 사용한 hand gesture recognition Check
 5. ROS-dashing을 이용하여 intel realsense로부터 입력받은 gesture 명령에 따른 turtle-bot 제어 Check
+6. HLD1 동작 Check
 
 
 
