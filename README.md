@@ -88,9 +88,10 @@ flowchart TD
 4. mediapipe 를 사용한 hand gesture recognition Check
 5. ROS-dashing을 이용하여 intel realsense로부터 입력받은 gesture 명령에 따른 turtle-bot 제어 Check
 6. HLD1 동작 Check
+7. Sound 출력 명령 생성 Check
 
 
 
 # current job
-은찬, 태섭 : 최종 하드웨어 구성, 시나리오에 따른 터틀봇 동작 구상, HLD2 진행, 사운드 출력하는 명령 생성<br>
+은찬, 태섭 : 최종 하드웨어 구성, 시나리오에 따른 터틀봇 동작 구상, HLD2 진행 <br>
 동현, 의근 : 
