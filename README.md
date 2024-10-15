@@ -86,8 +86,10 @@ flowchart TD
 2. jetson nano와 intel realsense connection Check
 3. 라즈베리에서 intel realsense 사용 불가 Check
 4. mediapipe 를 사용한 hand gesture recognition Check
+5. ROS-dashing을 이용하여 intel realsense로부터 입력받은 gesture 명령에 따른 turtle-bot 제어 Check
+
 
 
 # current job
-은찬, 태섭 : 통신 속도 정상화, turtlebot 제어 코드 refactoring, frame 처리 및 동작 제어 threading ,제스쳐 명령 수행<br>
+은찬, 태섭 : 최종 하드웨어 구성, 시나리오에 따른 터틀봇 동작 구상, HLD2 진행
 동현, 의근 : 
