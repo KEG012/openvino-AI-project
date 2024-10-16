@@ -89,6 +89,8 @@ flowchart TD
 5. ROS-dashing을 이용하여 intel realsense로부터 입력받은 gesture 명령에 따른 turtle-bot 제어 Check
 6. HLD1 동작 Check
 7. Sound 출력 명령 생성 Check
+8. 사람을 따라다니는 기본 알고리즘 구상 Check
+9. 
 
 
 
