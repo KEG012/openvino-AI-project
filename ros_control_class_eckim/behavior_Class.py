@@ -2,6 +2,7 @@ import rosControl
 from rosControl import Turmain
 import time
 from playsound import playsound
+
 class behavior(Turmain):
     def __init__(self, args):
         super().__init__(args)  # 부모 클래스의 초기화 메서드에 args 전달
