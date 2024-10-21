@@ -18,7 +18,7 @@ global gesture_start_time_i_love_you
 gesture_start_time_i_love_you = None
 global gesture_start_time_closed_fist
 gesture_start_time_closed_fist = None
-GESTURE_HOLD_TIME = 2
+GESTURE_HOLD_TIME = 5
 GESTURE_HOLD_TIME_SHORT=3
 global previous_depth_data
 previous_depth_data = None     
@@ -47,7 +47,7 @@ def get_frame_from_data():
     depth_data = receive_data(client_socket)
     
     # depth 프레임을 일시적으로 놓쳤을 경우 저장해둔 전의 프레임을 대신 보내줌
-    if depth_data is None or len(depth_data) == 0:
+    if depth_data  == b"":
         if previous_depth_data is not None:
             depth_data = previous_depth_data
         else:
@@ -71,7 +71,7 @@ def send_data(sock, data):
     sock.sendall(data_size.to_bytes(4, byteorder='big'))  # 데이터 크기 전송
     sock.sendall(data_bytes)  # 데이터 전송
 
-model_path = '/home/han/ros/gesture_recognizer.task'
+model_path = 'gesture_recognizer.task'
 
 #Hand land mark 설정
 mp_hands = mp.solutions.hands
@@ -148,6 +148,23 @@ global move_flag
 global mean_front_rgb , mean_back_rgb
 # global mean_front_hsv , mean_back_hsv
 
+#sound_flag
+global camera_in_flag
+camera_in_flag=0
+global front_scan_flag
+front_scan_flag=0
+global back_scan_flag
+back_scan_flag=0
+global please_one_flag
+please_one_flag=0
+global dudu_flag
+dudu_flag=0
+global termination_flag
+termination_flag=0
+global start_flag
+start_flag=0
+global pause_flag
+pause_flag=0
 def track_victory_gesture():
     global gesture_start_time_victory
     
@@ -156,6 +173,7 @@ def track_victory_gesture():
             gesture_start_time_victory = time.time()
             print(gesture_start_time_victory)
         elif time.time() - gesture_start_time_victory >= GESTURE_HOLD_TIME:
+            gesture_start_time_victory=time.time()
             return True
     else:
         gesture_start_time_victory = None
@@ -170,6 +188,7 @@ def track_i_love_you_gesture():
             gesture_start_time_i_love_you = time.time()
             print(gesture_start_time_i_love_you)
         elif time.time() - gesture_start_time_i_love_you >= GESTURE_HOLD_TIME:
+            gesture_start_time_i_love_you= time.time()
             return True
     else:
         gesture_start_time_i_love_you = None
@@ -184,6 +203,7 @@ def track_open_palm():
             gesture_start_time_closed_fist = time.time()
             print(gesture_start_time_closed_fist)
         elif time.time() - gesture_start_time_closed_fist >= GESTURE_HOLD_TIME_SHORT:
+            gesture_start_time_closed_fist=time.time()
             return True
     else:
         gesture_start_time_closed_fist = None
@@ -193,11 +213,12 @@ def track_open_palm():
 def track_thump_up():
     global gesture_start_time_thumbup
     
-    if recognized_gesture == "Thumb_up":
+    if recognized_gesture == "Thumb_Up":
         if gesture_start_time_thumbup is None:
             gesture_start_time_thumbup = time.time()
             print(gesture_start_time_thumbup)
         elif time.time() - gesture_start_time_thumbup >= GESTURE_HOLD_TIME_SHORT:
+            gesture_start_time_thumbup=time.time()
             return True
     else:
         gesture_start_time_thumbup = None
@@ -208,7 +229,7 @@ def matching_degree_back(cropped_image):
     global mean_back_rgb, mean_back_hsv
     mean_back_rgb_now, mean_front_hsv_now = mean_color(cropped_image)
     matching_degree_back_=3
-    matching_limit=10
+    matching_limit=20
     
     if(mean_back_rgb[0]-matching_limit<mean_back_rgb_now[0]<mean_back_rgb[0]+matching_limit):
         matching_degree_back_+=1
@@ -223,7 +244,7 @@ def matching_degree_front(cropped_image):
     global mean_front_rgb, mean_front_hsv
     mean_front_rgb_now, mean_front_hsv_now=mean_color(cropped_image)
     matching_degree_front_=3
-    matching_limit=10
+    matching_limit=20
 
     if(mean_front_rgb[0]-matching_limit<mean_front_rgb_now[0]<mean_front_rgb[0]+matching_limit):
         matching_degree_front_+=1
@@ -257,7 +278,7 @@ def calculate_box(color_img, depth_img, results):
     x_center_list = []
     y_center_list = []
     global move_flag
-    
+    global camera_in_flag
     if not results:
         return color_img, color_ROI, z_list, x_center_list
     
@@ -309,8 +330,9 @@ def calculate_box(color_img, depth_img, results):
     except IndexError:
         print("No boxs in here")
         move_flag = 0
-
-    return color_img, box_info, color_ROI, x_center_list, z_list, x_center, z
+        camera_in_flag=1
+        #bell_ring
+    return color_img, box_info, color_ROI, x_center_list, z_list
 
 def stand_by_mode(color_image, depth_image,recognizer):
     global Back_start_time
@@ -318,9 +340,11 @@ def stand_by_mode(color_image, depth_image,recognizer):
     global mean_front_rgb , mean_back_rgb
     # global mean_front_hsv , mean_back_hsv
     global bot_mode_flag
-    
+    global front_scan_flag
+    global back_scan_flag
+    global please_one_flag
     results = pose_model(source=color_image, conf=0.3, verbose=False)  
-    color_image, box_info, color_ROI, x_center_list, z_list, x_center, z = calculate_box(color_image, depth_image, results) 
+    color_image, box_info, color_ROI, x_center_list, z_list = calculate_box(color_image, depth_image, results) 
 
   
 
@@ -337,7 +361,8 @@ def stand_by_mode(color_image, depth_image,recognizer):
             back_flag=1
             # print(mean_front_hsv)
             print("뒤도세요")
-            #bell_ringing
+            front_scan_flag=1
+            #bell_ringing(앞 스캔 완료)
         
 
         if ((time.time()-Back_start_time)>GESTURE_HOLD_TIME) and back_flag==1:
@@ -347,7 +372,14 @@ def stand_by_mode(color_image, depth_image,recognizer):
             print("successed")
             back_flag=0
             bot_mode_flag=1
-            #bell_ringing
+            back_scan_flag=1
+            #bell_ringing(뒤 스캔 완료, 주행을 시작합니다.)
+            
+    elif len(color_ROI)>1:
+        #bell_ring(한명만 나와주세용)
+        please_one_flag=1
+        print("gg")
+        
             
 def auto_mode(color_image, depth_image, recognizer):
     global mean_front_rgb, mean_front_hsv
@@ -356,11 +388,15 @@ def auto_mode(color_image, depth_image, recognizer):
     success_flag_back=0
     success_flag_front=0# 0: standby 1: front 2: back
     global move_flag
-    
-    
+    global move_pause_flag
+    global dudu_flag
+    global termination_flag
+    global start_flag
+    global pause_flag
     results = pose_model(source=color_image, conf=0.3, verbose=False) 
-    color_image, box_info, color_ROI, x_center_list, z_list, x_center, z = calculate_box(color_image, depth_image, results) 
-    
+    color_image, box_info, color_ROI, x_center_list, z_list = calculate_box(color_image, depth_image, results) 
+    idx_back=None
+    idx_front=None
     for idx_back, ROI_back in enumerate(color_ROI):
         cropped_image_back=color_image[ROI_back[1]:ROI_back[3],ROI_back[0]:ROI_back[2]]
         matching_degree_back_num = matching_degree_back(cropped_image_back)
@@ -369,6 +405,8 @@ def auto_mode(color_image, depth_image, recognizer):
             success_flag_back=1
             ROI_back_human=box_info[idx_back]
             print("등 일치")
+            #bell_ring_dudu
+            # dudu_flag=1
             cropped_image_back_human=color_image[ROI_back_human[1]:ROI_back_human[3],ROI_back_human[0]:ROI_back_human[2]]
             break
         else: 
@@ -389,7 +427,7 @@ def auto_mode(color_image, depth_image, recognizer):
             move_flag = 0
             break
             
-    if success_flag_back==1:
+    if success_flag_back==1 and move_pause_flag==0:
         move_flag = 1
         # start()
         print("주행중")
@@ -398,33 +436,53 @@ def auto_mode(color_image, depth_image, recognizer):
         showHandGesture(recognizer, cropped_image_front_human) 
         if track_i_love_you_gesture(): # 해지
             print("해지")
-            #bell_ringing
+            #bell_ringing(해지 되었습니다.)
+            termination_flag=1
             bot_mode_flag=0
             move_flag = 0
         if track_thump_up(): #주행 시작
             print("주행 시작")
-            move_flag=1
-            #bell_ringing
-
+            # move_flag=1
+            #bell_ringing(주행을 시작합니다.)
+            start_flag=1
+            move_pause_flag=0
         if track_open_palm(): #정지
             print("정지")
             move_flag=0
-            #bell_ringing
-    
-    return x_center, z
+            pause_flag=1
+            move_pause_flag=1
+            #bell_ringing(일시 정지)
+
+
+    if idx_back is None or idx_front is None:
+        return 300,1.4
+
+    return x_center_list[idx_back], z_list[idx_back]
 
 def main_program():
     global bot_mode_flag
     bot_mode_flag=0
     global move_flag
     move_flag = 0
-    
+    global move_pause_flag
+    move_pause_flag=0
     recognizer = handGestueInit()
     x_center, z = 0, 0
 
-    
+    global sound_num
+    sound_num=0
+    global camera_in_flag
+    global front_scan_flag
+    global back_scan_flag
+    global please_one_flag
+    global dudu_flag
+    global termination_flag
+    global start_flag
+    global pause_flag
+
     try:  # 종료 조건을 루프 내부로 이동
         while True:
+            
             color_image, depth_image, depth_colormap = get_frame_from_data()
             
             
@@ -447,13 +505,43 @@ def main_program():
                     (f_center_min, f_height), (255, 255, 255), 1, cv2.LINE_AA)
             cv2.line(color_image, (f_center_max, 0),
                     (f_center_max, f_height), (255, 255, 255), 1, cv2.LINE_AA)
-            
+
+            if camera_in_flag==1:
+                sound_num=1
+            elif front_scan_flag==1:
+                sound_num=2
+            elif back_scan_flag==1:
+                sound_num=3
+            elif please_one_flag==1:
+                sound_num=4
+            elif dudu_flag==1:
+                sound_num=5
+            elif termination_flag==1:
+                sound_num=6
+            elif start_flag==1:
+                sound_num=7
+            elif pause_flag==1:
+                sound_num=8
+            send_data(client_socket,str(sound_num)) 
+
             #print(move_flag)
             send_data(client_socket, str(move_flag))
             
             send_data(client_socket,str(x_center))
             
             send_data(client_socket,str(z))
+
+
+            sound_num=0
+            camera_in_flag=0
+            front_scan_flag=0
+            back_scan_flag=0
+            please_one_flag=0
+            dudu_flag=0
+            termination_flag=0
+            start_flag=0
+            pause_flag=0
+
             
 
             

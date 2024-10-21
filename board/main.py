@@ -106,10 +106,9 @@ def main(args=None):
             socket_server.send_frame_data(encoded_depth)
             
             #socket_server.send_data(str(camera.depth_scale).encode())
-            
+            sound_num = socket_server.receive_data()            
             move_flag = socket_server.receive_data()
-            if move_flag:
-                print(f"Received from client:{move_flag}")
+
             
             # x_center,z data 
             x_center_byte = socket_server.receive_data()
@@ -121,9 +120,27 @@ def main(args=None):
             x_center = x_converter.byte_to_float()
             z = z_converter.byte_to_float()
             
+
+            if sound_num==b'1':
+                mainCon.sound_camera_in()
+            elif sound_num==b'2':
+                mainCon.sound_front_scan()
+            elif sound_num==b'3':
+                mainCon.sound_back_scan()
+            elif sound_num==b'4':
+                mainCon.sound_please_one()
+            elif sound_num==b'5':
+                mainCon.sound_dudu()
+            elif sound_num==b'6':
+                mainCon.sound_termination()
+            elif sound_num==b'7':
+                mainCon.sound_start()
+            elif sound_num==b'8':
+                mainCon.sound_pause()
+            
             
 
-            
+
             #이벤트처리#
             #chasing mode
             if move_flag == b'1':
