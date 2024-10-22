@@ -35,39 +35,23 @@ gantt
 flowchart TD
     A[Start: Chasing Car Activated] --> B[Depth Camera Input]
     B --> C[Person Detection]
-    C --> D[Pose Estimation: Shoulders, Hips, Elbows, Head]
-    D --> E[Create Landmark Based on Body Features]
-    E --> F[Identify Person]
-    F --> G[Is Person Showing Palm Hand Gesture?]
-    G -- Yes --> H[Detect Specific Person Only]
+    C --> D[Pose Estimation: Shoulders and Hips]
+    D --> E[Create Landmark and Drawing Rectangle on Body Features]
+    E --> F[Is person stand alone?]
+    F -- Yes --> G[Is Person Showing Victory Hand Gesture over three second?]
+    F -- No --> C
+    G -- Yes --> H[Detect Specific Person and Memorize RGB & HSV mean data]
+    G -- No --> C
     H --> I[Follow Detected Person]
-    G -- No --> B
     I --> J[Hand Gesture Recognition]
-    J --> K{Gesture Command}
-    K -- One Finger --> L[Move Closer]
-    K -- Two Fingers --> M[Move Backward]
-    K -- Three Fingers --> N[Rotate Right]
-    K -- Four Fingers --> O[Rotate Left]
-    K -- Fist --> P[Stop Following]
-    P --> End[End Process]
-    
     I --> Q[Has Person Disappeared from View?]
-    Q -- Yes --> R[Move Forward 1 Meter]
-    R --> S{Was Person on Left or Right of Screen?}
-    S -- Left --> T[Turn Left]
-    S -- Right --> U[Turn Right]
-    T --> V[Search for Person for 10 Seconds]
-    U --> V[Search for Person for 10 Seconds]
-    V --> W{Is Person Found?}
-    W -- Yes --> I
-    W -- No --> X[Stop and End Process]
-    X --> End
-    Q -- No --> J
-    
-    N --> Y[Rotate Right for 5 Seconds] --> Z[Return to Center]
-    O --> AA[Rotate Left for 5 Seconds] --> Z[Return to Center]
-    Z --> AB[Search for Specific Person]
-    AB --> V
+    Q -- Yes --> M[Stop]
+    Q -- No --> I
+    J --> K{Gesture Command}
+    K -- Open Palm --> M[Stop]
+    K -- Thumbs Up--> N[Move]
+    K -- I Love You --> L[Reset]
+    L --> C
 ```
 
 
