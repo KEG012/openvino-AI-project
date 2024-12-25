@@ -91,7 +91,9 @@ flowchart TD
 3. 사람이 90FPS 동안 사라졌을 경우 ID를 삭제하고 다른 ID를 부여함.
 
 # Color Result
-<img src="">
+<img src="./image/color detection.gif">
+
+1. 등록된 사람의 색만을 감지하여 추적하는 모델
 
 # deepSORT Result
 <img src="./image/deepSORT_test.gif">
