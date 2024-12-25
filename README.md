@@ -74,12 +74,13 @@ flowchart TD
 6. HLD1 동작 Check
 7. Sound 출력 명령 생성 Check
 8. 사람을 따라다니는 기본 알고리즘 구상 Check
-9. 
+9. 사람의 상의 색을 판단하여 추적하는 알고리즘 Check
+10. deepSORT를 이용한 사람 판별 알고리즘 Check
 
 
 
 # current job
 은찬, 태섭 : 최종 하드웨어 구성, 시나리오에 따른 터틀봇 동작 구상, HLD2 진행 <br>
-동현, 의근 : 
+동현, 의근 : 최종 하드웨어 구성, realsense camera 연동, 사람 추적 알고리즘 개발(deepSORT), 색판별 알고리즘 개발(Color Classification), frame내 사람 위치에 따른 터틀봇 움직임 변화 logic개발
 
 https://docs.google.com/presentation/d/1Lx77uSf5PYn2l2sOHIAY5sZOlxNl3XysMNC4QXFoowY/edit#slide=id.g3060aae8cd2_1_7
