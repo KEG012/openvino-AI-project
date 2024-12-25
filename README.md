@@ -93,10 +93,13 @@ flowchart TD
 # Color Result
 <img src="./image/color detection.gif">
 
-1. 등록된 사람의 색만을 감지하여 추적하는 모델
+1. 등록된 사람의 색만을 감지하여 추적하여 그 사람만을 따라서 이동
 
 # deepSORT Result
 <img src="./image/deepSORT_test.gif">
+<img src="./image/deepSORT detection.gif">
+
+1. deepSORT로 detection된 사람의 ID를 추적하여 그 사람만을 따라서 이동
 
 # finished job
 1. ROS를 통한 turtle bot control Check
