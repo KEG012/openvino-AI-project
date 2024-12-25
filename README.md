@@ -63,6 +63,18 @@ flowchart TD
 <img src="./HLD2.png" alt="이미지 설명" width="300" height="300"/>
 
 
+# Color Model Classification Model
+
+## Color Classification Model
+<img src="./image/color_classification_black.png">
+<img src="./image/color_classification_green.png">
+<img src="./image/color_classification_yellow.png">
+
+1. 총 10개의 class를 가지고 있는 모델로 특정 영역의 색을 추출하여 판단함.
+
+## Color Check with OpenCV
+<img src="./image/Screenshot from 2024-10-22 20-27-35.png" alt="이미지설명">
+
 
 
 # finished job
