@@ -63,19 +63,38 @@ flowchart TD
 <img src="./HLD2.png" alt="이미지 설명" width="300" height="300"/>
 
 
-# Color Model Classification Model
+# Color Classification Model
 
 ## Color Classification Model
 <img src="./image/color_classification_black.png">
 <img src="./image/color_classification_green.png">
 <img src="./image/color_classification_yellow.png">
 
-1. 총 10개의 class를 가지고 있는 모델로 특정 영역의 색을 추출하여 판단함.
+
+1. 사람을 감지하면 pose detection 모델로 양쪽 어깨, 양쪽 골반의 landmark를 추출하여 사각형을 그림
+2. 사각형 안에서 더 작은 영역을 추출하여 색을 판단함.
+3. 총 10개의 클래스로 나뉨. ['black', 'yellow', 'brown', 'green', 'orange', 'pink', 'purple', 'red', 'white', 'blue']
 
 ## Color Check with OpenCV
 <img src="./image/Screenshot from 2024-10-22 20-27-35.png" alt="이미지설명">
 
+1. 사람을 감지하면 pose detection 모델로 양쪽 어깨, 양쪽 골반의 landmark를 추출하여 사각형을 그림
+2. 사각형 내부의 색(RGB, HSV)의 평균을 구해 이를 저장함.
+3. 추후에 평균 값을 바탕으로 사람을 추적함.
 
+
+# deepSORT Model
+<img src="./image/DeepSORT_basic.gif">
+
+1. deepSORT 모델을 사용하여 사람의 ID를 부여.
+2. 감지한 사람에 ID를 부여하여 추적
+3. 사람이 90FPS 동안 사라졌을 경우 ID를 삭제하고 다른 ID를 부여함.
+
+# Color Result
+<img src="">
+
+# deepSORT Result
+<img src="./image/deepSORT_test.gif">
 
 # finished job
 1. ROS를 통한 turtle bot control Check
