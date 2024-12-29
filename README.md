@@ -40,7 +40,7 @@ flowchart TD
     E --> F[Is person stand alone?]
     F -- Yes --> G[Is Person Showing Victory Hand Gesture over three second?]
     F -- No --> C
-    G -- Yes --> H[Detect Specific Person and Memorize RGB & HSV mean data]
+    G -- Yes --> H[Detect Specific Person and Memorize RGB & HSV mean data and remember ID]
     G -- No --> C
     H --> I[Follow Detected Person]
     I --> J[Hand Gesture Recognition]
