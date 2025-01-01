@@ -107,16 +107,16 @@ flowchart TD
 -  deepSORT로 detection된 사람의 ID를 추적하여 그 사람만을 따라서 이동
 
 # ✅finished job
-1. ROS를 통한 turtle bot control Check
-2. jetson nano와 intel realsense connection Check
-3. 라즈베리에서 intel realsense 사용 불가 Check
-4. mediapipe 를 사용한 hand gesture recognition Check
-5. ROS-dashing을 이용하여 intel realsense로부터 입력받은 gesture 명령에 따른 turtle-bot 제어 Check
-6. HLD1 동작 Check
-7. Sound 출력 명령 생성 Check
-8. 사람을 따라다니는 기본 알고리즘 구상 Check
-9. 사람의 상의 색을 판단하여 추적하는 알고리즘 Check
-10. deepSORT를 이용한 사람 판별 알고리즘 Check
+1. ROS를 통한 turtle bot control ✅
+2. jetson nano와 intel realsense connection ✅
+3. 라즈베리에서 intel realsense 사용 불가 ✅
+4. mediapipe 를 사용한 hand gesture recognition ✅
+5. ROS-dashing을 이용하여 intel realsense로부터 입력받은 gesture 명령에 따른 turtle-bot 제어 ✅
+6. HLD1 동작 ✅
+7. Sound 출력 명령 생성 ✅
+8. 사람을 따라다니는 기본 알고리즘 구상 ✅
+9. 사람의 상의 색을 판단하여 추적하는 알고리즘 ✅
+10. deepSORT를 이용한 사람 판별 알고리즘 ✅
 
 
 
