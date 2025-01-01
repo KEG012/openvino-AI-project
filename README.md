@@ -65,9 +65,9 @@ flowchart TD
 
 # Human Detect Method
 사람을 추적하는 방식은 여러 개를 사용하였습니다.
-첫번째로 Color Classification AI Model을 이용하여 사람의 상의 색을 특징을 추출하여 이를 비교하여 사람을 추적합니다.
-두번째로 openCV를 사용하여 영역 안에 있는 색의 RGB와 HSV의 평균 값을 바탕으로 이를 비교하여 사람을 추적합니다.
-마지막으로 deepSORT를 사용하여 사람의 특징을 추출하고 ID를 부여하여 그 ID를 가진 사람을 추적합니다.
+- 첫번째로 Color Classification AI Model을 이용하여 사람의 상의 색을 특징을 추출하여 이를 비교하여 사람을 추적합니다.
+- 두번째로 openCV를 사용하여 영역 안에 있는 색의 RGB와 HSV의 평균 값을 바탕으로 이를 비교하여 사람을 추적합니다.
+- 마지막으로 deepSORT를 사용하여 사람의 특징을 추출하고 ID를 부여하여 그 ID를 가진 사람을 추적합니다.
 
 
 ## Color Classification Model
