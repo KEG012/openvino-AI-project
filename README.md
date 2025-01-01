@@ -1,5 +1,6 @@
 # openvino-AI-project
-Gihub got openvino AI project(Human chasing mobility)
+이번 AI 프로젝트는 사람의 편의성을 위해서 사람을 자동으로 추적하여 따라다니는 쇼핑카트를 제작하는 것에 목표를 두었습니다.
+기기 의존성을 최소화하기 위해 웨어러블 기기를 사용하지 않고 카트에 있는 Depth Camera와 AI만을 가지고 사람을 찾고 추적합니다.
 
 
 # Project Gantt Chart
