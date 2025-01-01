@@ -70,41 +70,38 @@ flowchart TD
 - 마지막으로 deepSORT를 사용하여 사람의 특징을 추출하고 ID를 부여하여 그 ID를 가진 사람을 추적합니다.
 
 ## 1️⃣Color Classification Model
+- 사람을 감지하면 pose detection 모델로 양쪽 어깨, 양쪽 골반의 landmark를 추출하여 사각형을 그림
+- 사각형 안에서 더 작은 영역을 추출하여 색을 판단함.
+- 총 10개의 클래스로 나뉨. ['black', 'yellow', 'brown', 'green', 'orange', 'pink', 'purple', 'red', 'white', 'blue']
+  
 <img src="./image/color_classification_black.png">
 <img src="./image/color_classification_green.png">
 <img src="./image/color_classification_yellow.png">
 
-
-- 사람을 감지하면 pose detection 모델로 양쪽 어깨, 양쪽 골반의 landmark를 추출하여 사각형을 그림
-- 사각형 안에서 더 작은 영역을 추출하여 색을 판단함.
-- 총 10개의 클래스로 나뉨. ['black', 'yellow', 'brown', 'green', 'orange', 'pink', 'purple', 'red', 'white', 'blue']
-
 ## 2️⃣Color Check with OpenCV
-<img src="./image/Screenshot from 2024-10-22 20-27-35.png" alt="이미지설명">
-
 - 사람을 감지하면 pose detection 모델로 양쪽 어깨, 양쪽 골반의 landmark를 추출하여 사각형을 그림
 - 사각형 내부의 색(RGB, HSV)의 평균을 구해 이를 저장함.
 - 추후에 평균 값을 바탕으로 사람을 추적함.
-
+- 
+<img src="./image/Screenshot from 2024-10-22 20-27-35.png" alt="이미지설명">
 
 ## 3️⃣deepSORT Model
-<img src="./image/DeepSORT_basic.gif">
-
 - deepSORT 모델을 사용하여 사람의 ID를 부여.
 - 감지한 사람에 ID를 부여하여 추적
 - 사람이 90FPS 동안 사라졌을 경우 ID를 삭제하고 다른 ID를 부여함.
 
+<img src="./image/DeepSORT_basic.gif">
+
+
 # 🖌Result
 ## 🎨Color Result
+-  등록된 사람의 색만을 감지하여 추적하여 그 사람만을 따라서 이동
 <img src="./image/color detection.gif">
 
--  등록된 사람의 색만을 감지하여 추적하여 그 사람만을 따라서 이동
-
 ## 🆔deepSORT Result
+-  deepSORT로 detection된 사람의 ID를 추적하여 그 사람만을 따라서 이동
 <img src="./image/deepSORT_test.gif">
 <img src="./image/deepSORT detection.gif">
-
--  deepSORT로 detection된 사람의 ID를 추적하여 그 사람만을 따라서 이동
 
 # ✅Check List
 1. ROS를 통한 turtle bot control ✅
