@@ -91,12 +91,13 @@ flowchart TD
 - 감지한 사람에 ID를 부여하여 추적
 - 사람이 90FPS 동안 사라졌을 경우 ID를 삭제하고 다른 ID를 부여함.
 
-# Color Result
+# Result
+## Color Result
 <img src="./image/color detection.gif">
 
 -  등록된 사람의 색만을 감지하여 추적하여 그 사람만을 따라서 이동
 
-# deepSORT Result
+## deepSORT Result
 <img src="./image/deepSORT_test.gif">
 <img src="./image/deepSORT detection.gif">
 
