@@ -106,7 +106,7 @@ flowchart TD
 
 -  deepSORT로 detection된 사람의 ID를 추적하여 그 사람만을 따라서 이동
 
-# ✅finished job
+# ✅Check List
 1. ROS를 통한 turtle bot control ✅
 2. jetson nano와 intel realsense connection ✅
 3. 라즈베리에서 intel realsense 사용 불가 ✅
