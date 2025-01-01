@@ -63,10 +63,10 @@ flowchart TD
 # HLD2 (젯슨나노에서 모델을 돌릴 수 있을 경우)
 <img src="./HLD2.png" alt="이미지 설명" width="300" height="300"/>
 
-
-# Color Classification Model
-
+# Human Detect Method
 ## Color Classification Model
+
+### Color Classification Model
 <img src="./image/color_classification_black.png">
 <img src="./image/color_classification_green.png">
 <img src="./image/color_classification_yellow.png">
@@ -76,7 +76,7 @@ flowchart TD
 - 사각형 안에서 더 작은 영역을 추출하여 색을 판단함.
 - 총 10개의 클래스로 나뉨. ['black', 'yellow', 'brown', 'green', 'orange', 'pink', 'purple', 'red', 'white', 'blue']
 
-## Color Check with OpenCV
+### Color Check with OpenCV
 <img src="./image/Screenshot from 2024-10-22 20-27-35.png" alt="이미지설명">
 
 - 사람을 감지하면 pose detection 모델로 양쪽 어깨, 양쪽 골반의 landmark를 추출하여 사각형을 그림
@@ -84,7 +84,7 @@ flowchart TD
 - 추후에 평균 값을 바탕으로 사람을 추적함.
 
 
-# deepSORT Model
+## deepSORT Model
 <img src="./image/DeepSORT_basic.gif">
 
 - deepSORT 모델을 사용하여 사람의 ID를 부여.
